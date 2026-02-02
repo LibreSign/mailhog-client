@@ -31,7 +31,7 @@ class OrSpecificationTest extends TestCase
     /**
      * @return array<string, array{OrSpecification}>
      */
-    public function satisfiedOrSpecificationsProvider(): array
+    public static function satisfiedOrSpecificationsProvider(): array
     {
         return [
             'left satisfied' => [new OrSpecification(new AlwaysSatisfied(), new NeverSatisfied())],

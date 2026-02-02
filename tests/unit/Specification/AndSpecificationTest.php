@@ -33,7 +33,7 @@ class AndSpecificationTest extends TestCase
     /**
      * @return array<string, array{AndSpecification}>
      */
-    public function nonSatisfiedAndSpecificationsProvider(): array
+    public static function nonSatisfiedAndSpecificationsProvider(): array
     {
         return [
             'left not satisfied' => [new AndSpecification(new NeverSatisfied(), new AlwaysSatisfied())],

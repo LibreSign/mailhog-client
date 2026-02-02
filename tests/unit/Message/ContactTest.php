@@ -20,7 +20,7 @@ class ContactTest extends TestCase
     /**
      * @return array<string, array{string, Contact}>
      */
-    public function contactProvider(): array
+    public static function contactProvider(): array
     {
         return [
             'e-mail address only' => [

@@ -26,7 +26,7 @@ class ContactCollectionTest extends TestCase
     /**
      * @return array<string, array{string, Contact[]}>
      */
-    public function contactsProvider(): array
+    public static function contactsProvider(): array
     {
         return [
             'single e-mail address' => [
@@ -79,7 +79,7 @@ class ContactCollectionTest extends TestCase
     /**
      * @return array<string, array{Contact, Contact}>
      */
-    public function equalContactsProvider(): array
+    public static function equalContactsProvider(): array
     {
         return [
             'e-mail address only' => [new Contact('me@myself.example'), new Contact('me@myself.example')],
@@ -101,7 +101,7 @@ class ContactCollectionTest extends TestCase
     /**
      * @return array<string, array{Contact, Contact}>
      */
-    public function nonEqualContactsProvider(): array
+    public static function nonEqualContactsProvider(): array
     {
         return [
             'different e-mail address' => [

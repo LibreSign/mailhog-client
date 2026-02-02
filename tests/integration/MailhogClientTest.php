@@ -190,7 +190,7 @@ class MailhogClientTest extends TestCase
     /**
      * @return array<string, int[]>
      */
-    public function limitProvider(): array
+    public static function limitProvider(): array
     {
         return [
             'one by one' => [1],
@@ -234,7 +234,7 @@ class MailhogClientTest extends TestCase
     /**
      * @return array<string, array{Specification}>
      */
-    public function specificationProvider(): array
+    public static function specificationProvider(): array
     {
         return [
             'sender specification' => [new SenderSpecification(new Contact('me@myself.example'))],
@@ -280,9 +280,13 @@ class MailhogClientTest extends TestCase
     /**
      * @return array<string, array{Email, Contact[]}>
      */
-    public function messageProvider(): array
+    public static function messageProvider(): array
     {
-        $message = $this->createBasicMessage('me@myself.example', 'myself@myself.example', 'Test subject', 'Test body');
+        $message = (new Email())
+            ->from('me@myself.example')
+            ->to('myself@myself.example')
+            ->subject('Test subject')
+            ->text('Test body');
 
         return [
             'single recipient' => [
@@ -446,7 +450,7 @@ class MailhogClientTest extends TestCase
     /**
      * @return array<string, Email[]>
      */
-    public function htmlMessageProvider(): array
+    public static function htmlMessageProvider(): array
     {
         $message = (new Email())
             ->from('me@myself.example')
