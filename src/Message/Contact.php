@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Message;
+namespace LibreSign\Mailpit\Message;
 
 use function preg_match;
 use function stripslashes;

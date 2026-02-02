@@ -1,24 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Message;
+namespace LibreSign\Mailpit\Message;
 
-use rpkamp\Mailhog\Message\Mime\MimePartCollection;
+use LibreSign\Mailpit\Message\Mime\MimePartCollection;
 
 use function quoted_printable_decode;
 
 class MessageFactory
 {
     /**
-     * @param mixed[] $mailhogResponse
+     * @param mixed[] $mailpitResponse
      */
-    public static function fromMailhogResponse(array $mailhogResponse): Message
+    public static function fromMailpitResponse(array $mailpitResponse): Message
     {
-        $mimeParts = MimePartCollection::fromMailhogResponse($mailhogResponse['MIME']['Parts'] ?? []);
-        $headers = Headers::fromMailhogResponse($mailhogResponse);
+        $mimeParts = MimePartCollection::fromMailpitResponse($mailpitResponse['MIME']['Parts'] ?? []);
+        $headers = Headers::fromMailpitResponse($mailpitResponse);
 
         return new Message(
-            $mailhogResponse['ID'],
+            $mailpitResponse['ID'],
             Contact::fromString($headers->get('From')),
             ContactCollection::fromString($headers->get('To', '')),
             ContactCollection::fromString($headers->get('Cc', '')),
@@ -26,7 +26,7 @@ class MessageFactory
             $headers->get('Subject', ''),
             !$mimeParts->isEmpty()
                 ? $mimeParts->getBody()
-                : static::decodeBody($headers, $mailhogResponse['Content']['Body']),
+                : static::decodeBody($headers, $mailpitResponse['Content']['Body']),
             !$mimeParts->isEmpty() ? $mimeParts->getAttachments() : [],
             $headers
         );

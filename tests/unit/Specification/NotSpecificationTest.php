@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Tests\unit\Specification;
+namespace LibreSign\Mailpit\Tests\unit\Specification;
 
 use PHPUnit\Framework\TestCase;
-use rpkamp\Mailhog\Specification\NotSpecification;
-use rpkamp\Mailhog\Tests\unit\Specification\Fixtures\AlwaysSatisfied;
-use rpkamp\Mailhog\Tests\unit\Specification\Fixtures\MessageFactory;
-use rpkamp\Mailhog\Tests\unit\Specification\Fixtures\NeverSatisfied;
+use LibreSign\Mailpit\Specification\NotSpecification;
+use LibreSign\Mailpit\Tests\unit\Specification\Fixtures\AlwaysSatisfied;
+use LibreSign\Mailpit\Tests\unit\Specification\Fixtures\MessageFactory;
+use LibreSign\Mailpit\Tests\unit\Specification\Fixtures\NeverSatisfied;
 
 class NotSpecificationTest extends TestCase
 {

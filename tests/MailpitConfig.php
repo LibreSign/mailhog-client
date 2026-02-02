@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Tests;
+namespace LibreSign\Mailpit\Tests;
 
 use RuntimeException;
 
-final class MailhogConfig
+final class MailpitConfig
 {
     /**
      * @var string
@@ -48,7 +48,7 @@ final class MailhogConfig
         if (!isset($info['host'])) {
             throw new RuntimeException(
                 sprintf(
-                    'Unable to parse host from Mailhog DSN "%s"',
+                    'Unable to parse host from Mailpit DSN "%s"',
                     $dsn
                 )
             );
@@ -57,7 +57,7 @@ final class MailhogConfig
         if (!isset($info['port'])) {
             throw new RuntimeException(
                 sprintf(
-                    'Unable to parse port from Mailhog DSN "%s"',
+                    'Unable to parse port from Mailpit DSN "%s"',
                     $dsn
                 )
             );

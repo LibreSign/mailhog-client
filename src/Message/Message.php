@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Message;
+namespace LibreSign\Mailpit\Message;
 
 use InvalidArgumentException;
-use rpkamp\Mailhog\Message\Mime\Attachment;
+use LibreSign\Mailpit\Message\Mime\Attachment;
 
 use function sprintf;
 

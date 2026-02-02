@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Tests\unit\Message;
+namespace LibreSign\Mailpit\Tests\unit\Message;
 
 use PHPUnit\Framework\TestCase;
-use rpkamp\Mailhog\Message\Contact;
+use LibreSign\Mailpit\Message\Contact;
 
 class ContactTest extends TestCase
 {

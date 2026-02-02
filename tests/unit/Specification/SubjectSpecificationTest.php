@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Tests\unit\Specification;
+namespace LibreSign\Mailpit\Tests\unit\Specification;
 
 use PHPUnit\Framework\TestCase;
-use rpkamp\Mailhog\Specification\SubjectSpecification;
-use rpkamp\Mailhog\Tests\unit\Specification\Fixtures\MessageFactory;
+use LibreSign\Mailpit\Specification\SubjectSpecification;
+use LibreSign\Mailpit\Tests\unit\Specification\Fixtures\MessageFactory;
 
 class SubjectSpecificationTest extends TestCase
 {

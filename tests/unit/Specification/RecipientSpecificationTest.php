@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Tests\unit\Specification;
+namespace LibreSign\Mailpit\Tests\unit\Specification;
 
 use PHPUnit\Framework\TestCase;
-use rpkamp\Mailhog\Message\Contact;
-use rpkamp\Mailhog\Specification\RecipientSpecification;
-use rpkamp\Mailhog\Tests\unit\Specification\Fixtures\MessageFactory;
+use LibreSign\Mailpit\Message\Contact;
+use LibreSign\Mailpit\Specification\RecipientSpecification;
+use LibreSign\Mailpit\Tests\unit\Specification\Fixtures\MessageFactory;
 
 class RecipientSpecificationTest extends TestCase
 {

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Message\Mime;
+namespace LibreSign\Mailpit\Message\Mime;
 
 use function array_merge;
 use function count;
@@ -19,7 +19,7 @@ class MimePartCollection
     /**
      * @param mixed[] $mimeParts
      */
-    public static function fromMailhogResponse(array $mimeParts): self
+    public static function fromMailpitResponse(array $mimeParts): self
     {
         return new self(self::flattenParts($mimeParts));
     }
@@ -34,7 +34,7 @@ class MimePartCollection
         $flattenedParts = [];
         foreach ($mimeParts as $mimePart) {
             if (!isset($mimePart['MIME']['Parts'])) {
-                $flattenedParts[] = MimePart::fromMailhogResponse($mimePart);
+                $flattenedParts[] = MimePart::fromMailpitResponse($mimePart);
                 continue;
             }
 

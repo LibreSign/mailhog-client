@@ -1,41 +1,41 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Tests\integration;
+namespace LibreSign\Mailpit\Tests\integration;
 
 use Generator;
 use Http\Client\Curl\Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use PHPUnit\Framework\TestCase;
-use rpkamp\Mailhog\MailhogClient;
-use rpkamp\Mailhog\Message\Mime\Attachment;
-use rpkamp\Mailhog\Message\Contact;
-use rpkamp\Mailhog\Message\Message;
-use rpkamp\Mailhog\NoSuchMessageException;
-use rpkamp\Mailhog\Specification\AndSpecification;
-use rpkamp\Mailhog\Specification\BodySpecification;
-use rpkamp\Mailhog\Specification\OrSpecification;
-use rpkamp\Mailhog\Specification\SenderSpecification;
-use rpkamp\Mailhog\Specification\Specification;
-use rpkamp\Mailhog\Specification\SubjectSpecification;
-use rpkamp\Mailhog\Tests\MailhogConfig;
-use rpkamp\Mailhog\Tests\MessageTrait;
+use LibreSign\Mailpit\MailpitClient;
+use LibreSign\Mailpit\Message\Mime\Attachment;
+use LibreSign\Mailpit\Message\Contact;
+use LibreSign\Mailpit\Message\Message;
+use LibreSign\Mailpit\NoSuchMessageException;
+use LibreSign\Mailpit\Specification\AndSpecification;
+use LibreSign\Mailpit\Specification\BodySpecification;
+use LibreSign\Mailpit\Specification\OrSpecification;
+use LibreSign\Mailpit\Specification\SenderSpecification;
+use LibreSign\Mailpit\Specification\Specification;
+use LibreSign\Mailpit\Specification\SubjectSpecification;
+use LibreSign\Mailpit\Tests\MailpitConfig;
+use LibreSign\Mailpit\Tests\MessageTrait;
 use RuntimeException;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 
-class MailhogClientTest extends TestCase
+class MailpitClientTest extends TestCase
 {
     use MessageTrait;
 
     /**
-     * @var MailhogClient
+     * @var MailpitClient
      */
     private $client;
 
     public function setUp(): void
     {
-        $this->client = new MailhogClient(
+        $this->client = new MailpitClient(
             new Client(),
             new Psr17Factory(),
             new Psr17Factory(),
@@ -159,7 +159,7 @@ class MailhogClientTest extends TestCase
      * @test
      * @dataProvider limitProvider
      */
-    public function it_should_query_mailhog_until_all_messages_have_been_received(): void
+    public function it_should_query_mailpit_until_all_messages_have_been_received(): void
     {
         for ($i = 0; $i < 5; $i++) {
             $this->sendMessage(
@@ -533,12 +533,12 @@ class MailhogClientTest extends TestCase
 
         $message = iterator_to_array($this->client->findAllMessages())[0];
 
-        $info = parse_url($_ENV['mailhog_smtp_dsn'] ?? 'smtp://localhost:1025');
+        $info = parse_url($_ENV['mailpit_smtp_dsn'] ?? 'smtp://localhost:1025');
 
         $this->client->releaseMessage(
             $message->messageId,
-            MailhogConfig::getHost(),
-            MailhogConfig::getPort(),
+            MailpitConfig::getHost(),
+            MailpitConfig::getPort(),
             'me@myself.example'
         );
 
@@ -588,7 +588,7 @@ BODY;
             ->from('me@myself.example')
             ->to('me@myself.example')
             ->html($body)
-            ->subject('Mailhog extension for Behat');
+            ->subject('Mailpit extension for Behat');
 
         $this->sendMessage($message);
 

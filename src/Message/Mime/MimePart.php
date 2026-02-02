@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Message\Mime;
+namespace LibreSign\Mailpit\Message\Mime;
 
-use rpkamp\Mailhog\Message\Headers;
+use LibreSign\Mailpit\Message\Headers;
 
 use function base64_decode;
 use function explode;
@@ -25,7 +25,7 @@ class MimePart
     /**
      * @param mixed[] $mimePart
      */
-    public static function fromMailhogResponse(array $mimePart): MimePart
+    public static function fromMailpitResponse(array $mimePart): MimePart
     {
         $headers = Headers::fromMimePart($mimePart);
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog\Message;
+namespace LibreSign\Mailpit\Message;
 
 use function iconv_mime_decode;
 use function strtolower;
@@ -16,11 +16,11 @@ class Headers
     }
 
     /**
-     * @param array<mixed, mixed> $mailhogResponse
+     * @param array<mixed, mixed> $mailpitResponse
      */
-    public static function fromMailhogResponse(array $mailhogResponse): self
+    public static function fromMailpitResponse(array $mailpitResponse): self
     {
-        return self::fromRawHeaders($mailhogResponse['Content']['Headers'] ?? []);
+        return self::fromRawHeaders($mailpitResponse['Content']['Headers'] ?? []);
     }
 
     /**

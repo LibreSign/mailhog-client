@@ -16,12 +16,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "rpkamp\\Mailhog\\": "src/"
+            "LibreSign\\Mailpit\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "rpkamp\\Mailhog\\Tests\\": "tests/"
+            "LibreSign\\Mailpit\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "stable",

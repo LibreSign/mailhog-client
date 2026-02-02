@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace rpkamp\Mailhog;
+namespace LibreSign\Mailpit;
 
 use Generator;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\RequestFactoryInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
-use rpkamp\Mailhog\Message\Message;
-use rpkamp\Mailhog\Message\MessageFactory;
-use rpkamp\Mailhog\Specification\Specification;
+use LibreSign\Mailpit\Message\Message;
+use LibreSign\Mailpit\Message\MessageFactory;
+use LibreSign\Mailpit\Specification\Specification;
 use RuntimeException;
 
 use function array_filter;
@@ -22,7 +22,7 @@ use function json_encode;
 use function rtrim;
 use function sprintf;
 
-class MailhogClient
+class MailpitClient
 {
     public function __construct(
         private ClientInterface $httpClient,
@@ -55,7 +55,7 @@ class MailhogClient
             $allMessageData = json_decode($response->getBody()->getContents(), true);
 
             foreach ($allMessageData['items'] as $messageData) {
-                yield MessageFactory::fromMailhogResponse($messageData);
+                yield MessageFactory::fromMailpitResponse($messageData);
             }
 
             $start += $limit;
@@ -86,7 +86,7 @@ class MailhogClient
 
         $messages = [];
         foreach ($allMessageData['items'] as $messageData) {
-            $messages[] = MessageFactory::fromMailhogResponse($messageData);
+            $messages[] = MessageFactory::fromMailpitResponse($messageData);
         }
 
         return $messages;
@@ -187,6 +187,6 @@ class MailhogClient
             throw NoSuchMessageException::forMessageId($messageId);
         }
 
-        return MessageFactory::fromMailhogResponse($messageData);
+        return MessageFactory::fromMailpitResponse($messageData);
     }
 }

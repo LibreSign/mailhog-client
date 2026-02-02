@@ -52,7 +52,7 @@
             "\u003cno-reply@myself.example\u003e"
           ],
           "Subject":[
-            "Mailhog =?utf-8?Q?=C3=A9?= muito bom mesmo: =?utf-8?Q?=F0=9F=98=81?="
+            "Mailpit =?utf-8?Q?=C3=A9?= muito bom mesmo: =?utf-8?Q?=F0=9F=98=81?="
           ],
           "To":[
             "=?utf-8?Q?Jos=C3=A9?= \u003cjose@myself.example\u003e, =?utf-8?Q?Let=C3=ADcia_maranh=C3=A3o?= \u003cleticia@myself.example\u003e"
@@ -70,7 +70,7 @@
           "jose@myself.example",
           "leticia@myself.example"
         ],
-        "Data":"Message-ID: \u003c3f91997768d3c98ab3e19cebb5a731f8@swift.generated\u003e\r\nDate: Sun, 06 Sep 2020 15:24:56 -0300\r\nSubject: Mailhog =?utf-8?Q?=C3=A9?= muito bom mesmo:\r\n =?utf-8?Q?=F0=9F=98=81?=\r\nFrom: =?utf-8?Q?Jos=C3=A9?= de tal \u003cno-reply@myself.example\u003e\r\nTo: =?utf-8?Q?Jos=C3=A9?= \u003cjose@myself.example\u003e,\r\n =?utf-8?Q?Let=C3=ADcia_maranh=C3=A3o?= \u003cleticia@myself.example\u003e\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: quoted-printable\r\n\r\nfoobar",
+        "Data":"Message-ID: \u003c3f91997768d3c98ab3e19cebb5a731f8@swift.generated\u003e\r\nDate: Sun, 06 Sep 2020 15:24:56 -0300\r\nSubject: Mailpit =?utf-8?Q?=C3=A9?= muito bom mesmo:\r\n =?utf-8?Q?=F0=9F=98=81?=\r\nFrom: =?utf-8?Q?Jos=C3=A9?= de tal \u003cno-reply@myself.example\u003e\r\nTo: =?utf-8?Q?Jos=C3=A9?= \u003cjose@myself.example\u003e,\r\n =?utf-8?Q?Let=C3=ADcia_maranh=C3=A3o?= \u003cleticia@myself.example\u003e\r\nMIME-Version: 1.0\r\nContent-Type: text/html; charset=utf-8\r\nContent-Transfer-Encoding: quoted-printable\r\n\r\nfoobar",
         "Helo":"[127.0.0.1]"
       }
     }

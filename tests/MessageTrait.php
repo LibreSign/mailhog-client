@@ -1,6 +1,6 @@
 <?php
 
-namespace rpkamp\Mailhog\Tests;
+namespace LibreSign\Mailpit\Tests;
 
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
