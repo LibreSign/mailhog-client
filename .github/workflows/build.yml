@@ -10,10 +10,6 @@ jobs:
     services:
       mailpit:
         image: axllent/mailpit
-        env:
-          MH_SMTP_BIND_ADDR: 0.0.0.0:1025
-          MH_API_BIND_ADDR: 0.0.0.0:8025
-          MH_UI_BIND_ADDR: 0.0.0.0:8025
         ports:
           - 1025:1025
           - 8025:8025
