@@ -1,12 +1,17 @@
 {
-    "name": "rpkamp/mailhog-client",
-    "description": "Mailhog API Client for PHP",
+    "name": "libresign/mailpit-client",
+    "description": "Mailpit API Client for PHP - Modern replacement for Mailhog",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
+            "name": "LibreSign Team",
+            "email": "hello@libresign.coop"
+        },
+        {
             "name": "Remon van de Kamp",
-            "email": "rpkamp@gmail.com"
+            "email": "rpkamp@gmail.com",
+            "role": "Original Mailhog client author"
         }
     ],
     "autoload": {
