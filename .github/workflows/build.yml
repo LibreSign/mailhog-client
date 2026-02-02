@@ -8,8 +8,8 @@ on:
 jobs:
   tests:
     services:
-      mailhog:
-        image: mailhog/mailhog:v1.0.0
+      mailpit:
+        image: axllent/mailpit
         env:
           MH_SMTP_BIND_ADDR: 0.0.0.0:2025
           MH_API_BIND_ADDR: 0.0.0.0:9025
