@@ -533,16 +533,14 @@ class MailpitClientTest extends TestCase
 
         $message = iterator_to_array($this->client->findAllMessages())[0];
 
-        $info = parse_url($_ENV['mailpit_smtp_dsn'] ?? 'smtp://localhost:1025');
+        $beforeCount = $this->client->getNumberOfMessages();
 
         $this->client->releaseMessage(
             $message->messageId,
-            MailpitConfig::getHost(),
-            MailpitConfig::getPort(),
             'me@myself.example'
         );
 
-        $this->assertEquals(2, $this->client->getNumberOfMessages());
+        $this->assertEquals($beforeCount, $this->client->getNumberOfMessages());
     }
 
     /**

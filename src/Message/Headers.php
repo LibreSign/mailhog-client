@@ -20,7 +20,15 @@ class Headers
      */
     public static function fromMailpitResponse(array $mailpitResponse): self
     {
-        return self::fromRawHeaders($mailpitResponse['Content']['Headers'] ?? []);
+        if (isset($mailpitResponse['Headers'])) {
+            return self::fromRawHeaders($mailpitResponse['Headers']);
+        }
+
+        if (self::isHeadersArray($mailpitResponse)) {
+            return self::fromRawHeaders($mailpitResponse);
+        }
+
+        return self::fromRawHeaders([]);
     }
 
     /**
@@ -48,6 +56,21 @@ class Headers
         }
 
         return new Headers($headers);
+    }
+
+
+    /**
+     * @param array<mixed, mixed> $data
+     */
+    private static function isHeadersArray(array $data): bool
+    {
+        foreach ($data as $value) {
+            if (!is_array($value)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function get(string $name, string $default = ''): string

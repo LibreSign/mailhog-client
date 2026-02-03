@@ -90,6 +90,6 @@ class HeadersTest extends TestCase
         }
 
         $allMessagesData = json_decode($contents, true);
-        return $allMessagesData['items'][0];
+        return is_array($allMessagesData) ? $allMessagesData : [];
     }
 }

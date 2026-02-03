@@ -35,4 +35,14 @@ class Contact
 
         return $this->emailAddress === $other->emailAddress;
     }
+
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
+    public function getName(): string | null
+    {
+        return $this->name;
+    }
 }
