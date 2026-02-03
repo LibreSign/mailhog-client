@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace LibreSign\Mailpit\Tests\unit\Message;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use LibreSign\Mailpit\Message\Contact;
 
 class ContactTest extends TestCase
 {
-    /**
-     * @test
-     * @dataProvider contactProvider
-     */
+    #[Test]
+    #[DataProvider('contactProvider')]
     public function it_should_parse_to_email_address_and_name(string $input, Contact $expectedContact): void
     {
         $this->assertEquals($expectedContact, Contact::fromString($input));
@@ -46,34 +46,26 @@ class ContactTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_indicate_when_equal_to_other_contact_based_on_email_address_only(): void
     {
         $this->assertTrue((new Contact('me@myself.example'))->equals(new Contact('me@myself.example')));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_indicate_when_equal_to_other_contact_when_either_contact_has_no_name(): void
     {
         $this->assertTrue((new Contact('me@myself.example', 'Me'))->equals(new Contact('me@myself.example')));
         $this->assertTrue((new Contact('me@myself.example'))->equals(new Contact('me@myself.example', 'Me')));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_indicate_when_not_equal_to_each_other_when_names_are_not_equal(): void
     {
         $this->assertFalse((new Contact('me@myself.example', 'Me'))->equals(new Contact('me@myself.example', 'Myself')));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_indicate_when_not_equal_to_each_other_when_email_addresses_are_not_equal(): void
     {
         $this->assertFalse((new Contact('me@myself.example', 'Me'))->equals(new Contact('someoneelse@myself.example', 'Me')));

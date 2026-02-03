@@ -6,6 +6,8 @@ namespace LibreSign\Mailpit\Tests\integration;
 use Generator;
 use Http\Client\Curl\Client;
 use Nyholm\Psr7\Factory\Psr17Factory;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use LibreSign\Mailpit\MailpitClient;
 use LibreSign\Mailpit\Message\Mime\Attachment;
@@ -44,9 +46,7 @@ class MailpitClientTest extends TestCase
         $this->client->purgeMessages();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_return_correct_number_of_messages_in_inbox(): void
     {
         $this->sendDummyMessage();
@@ -54,9 +54,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals(1, $this->client->getNumberOfMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_delete_the_message(): void
     {
         $this->sendDummyMessage();
@@ -68,9 +66,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals(0, $this->client->getNumberOfMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_purge_the_inbox(): void
     {
         $this->sendDummyMessage();
@@ -80,9 +76,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals(0, $this->client->getNumberOfMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_receive_all_message_data(): void
     {
         $this->sendMessage(
@@ -99,9 +93,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals('Test body', $message->body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_handle_message_without_subject_correctly(): void
     {
         $this->sendMessage(
@@ -114,9 +106,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals('', $message->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_find_latest_messages(): void
     {
         for ($i = 1; $i <= 10; $i++) {
@@ -126,9 +116,7 @@ class MailpitClientTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_find_last_message(): void
     {
         for ($i = 1; $i <= 3; $i++) {
@@ -146,19 +134,15 @@ class MailpitClientTest extends TestCase
         $this->assertEquals('Test body', $message->body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_throw_exception_when_there_is_no_last_message(): void
     {
         $this->expectException(NoSuchMessageException::class);
         $this->client->getLastMessage();
     }
 
-    /**
-     * @test
-     * @dataProvider limitProvider
-     */
+    #[Test]
+    #[DataProvider('limitProvider')]
     public function it_should_query_mailpit_until_all_messages_have_been_received(): void
     {
         for ($i = 0; $i < 5; $i++) {
@@ -200,10 +184,8 @@ class MailpitClientTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @dataProvider specificationProvider
-     */
+    #[Test]
+    #[DataProvider('specificationProvider')]
     public function it_should_find_messages_that_satisfy_specification(Specification $specification): void
     {
         $this->sendMessage(
@@ -253,11 +235,8 @@ class MailpitClientTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     * @param Contact[] $expectedRecipients
-     * @dataProvider messageProvider
-     */
+    #[Test]
+    #[DataProvider('messageProvider')]
     public function it_should_receive_single_message_by_id(Email $messageToSend, array $expectedRecipients): void
     {
         $this->sendMessage($messageToSend);
@@ -300,9 +279,7 @@ class MailpitClientTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_hydrate_message_with_cc_and_bcc_recipients(): void
     {
         $messageToSend = (new Email())
@@ -330,9 +307,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals('Test body', $messages[0]->body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_hydrate_message_with_bcc_recipients_only(): void
     {
         $messageToSend = (new Email())
@@ -356,9 +331,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals('Test body', $messages[0]->body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_hydrate_names(): void
     {
         $messageToSend = (new Email())
@@ -378,9 +351,7 @@ class MailpitClientTest extends TestCase
         $this->assertTrue($message->ccRecipients->contains(new Contact('cc@myself.example', 'CC Example')));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_hydrate_message_with_attachment(): void
     {
         $message = $this->createBasicMessage('me@myself.example', 'myself@myself.example', 'Test subject', 'Test body');
@@ -403,9 +374,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals('Test body', $message->body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_hydrate_message_with_attachment_before_body(): void
     {
         $message = (new Email())
@@ -432,10 +401,8 @@ class MailpitClientTest extends TestCase
         $this->assertEquals('Hello world', $message->body);
     }
 
-    /**
-     * @test
-     * @dataProvider htmlMessageProvider
-     */
+    #[Test]
+    #[DataProvider('htmlMessageProvider')]
     public function it_should_prefer_html_part_over_plaintext_part(Email $messageToSend): void
     {
         $this->sendMessage($messageToSend);
@@ -471,9 +438,7 @@ class MailpitClientTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_hydrate_attachments(): void
     {
         $message = (new Email())
@@ -515,18 +480,14 @@ class MailpitClientTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_throw_exception_when_no_message_found_by_id(): void
     {
         $this->expectException(NoSuchMessageException::class);
         $this->client->getMessageById('123');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_release_a_message(): void
     {
         $this->sendDummyMessage();
@@ -543,9 +504,7 @@ class MailpitClientTest extends TestCase
         $this->assertEquals($beforeCount, $this->client->getNumberOfMessages());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_decode_quoted_printable_html_messages(): void
     {
         $body = <<<BODY
@@ -569,9 +528,7 @@ BODY;
         $this->assertEquals(str_replace(PHP_EOL, "\r\n", $body), $message->body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_decode_quoted_printable_html_messages_non_mime_part(): void
     {
         $body = <<<BODY
@@ -598,9 +555,7 @@ BODY;
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_decode_quoted_printable_text_messages(): void
     {
         $message = (new Email())

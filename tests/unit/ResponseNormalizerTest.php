@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace LibreSign\Mailpit\Tests\unit;
 
 use LibreSign\Mailpit\ResponseNormalizer;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -16,9 +17,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->normalizer = new ResponseNormalizer();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_decode_valid_json_response(): void
     {
         $json = '{"message": "success", "data": {"id": 123}}';
@@ -28,9 +27,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals(['message' => 'success', 'data' => ['id' => 123]], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_throw_exception_for_invalid_json(): void
     {
         $this->expectException(RuntimeException::class);
@@ -39,9 +36,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->normalizer->decodeJsonResponse('invalid json', 'test context');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_throw_exception_when_json_is_not_an_array(): void
     {
         $this->expectException(RuntimeException::class);
@@ -50,9 +45,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->normalizer->decodeJsonResponse('"just a string"', 'scalar value');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_preserve_all_string_keys_from_json_response(): void
     {
         $json = '{"valid": "kept", "name": "value", "key123": "also kept"}';
@@ -62,9 +55,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals(['valid' => 'kept', 'name' => 'value', 'key123' => 'also kept'], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_normalize_array_of_string_keyed_arrays(): void
     {
         $input = [
@@ -77,9 +68,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals($input, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_filter_non_array_items_from_array(): void
     {
         $input = [
@@ -98,9 +87,7 @@ final class ResponseNormalizerTest extends TestCase
         ], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_filter_numeric_keys_from_nested_arrays(): void
     {
         $input = [
@@ -116,9 +103,7 @@ final class ResponseNormalizerTest extends TestCase
         ], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_skip_empty_arrays_after_normalization(): void
     {
         $input = [
@@ -132,9 +117,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals([['valid' => 'kept']], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_return_empty_array_when_input_is_not_array(): void
     {
         $result = $this->normalizer->normalizeArrayOfStringKeyedArrays('not an array');
@@ -142,9 +125,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals([], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_normalize_header_map_correctly(): void
     {
         $input = [
@@ -157,9 +138,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals($input, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_filter_non_string_header_names(): void
     {
         $input = [
@@ -173,9 +152,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals(['Content-Type' => ['text/html']], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_filter_non_array_header_values(): void
     {
         $input = [
@@ -189,9 +166,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals(['Content-Type' => ['text/html']], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_filter_non_string_values_from_header_arrays(): void
     {
         $input = [
@@ -203,9 +178,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals(['X-Mixed' => ['valid', 'also valid']], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_skip_headers_with_empty_values_after_filtering(): void
     {
         $input = [
@@ -222,9 +195,7 @@ final class ResponseNormalizerTest extends TestCase
         ], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_return_empty_array_when_header_map_is_not_array(): void
     {
         $result = $this->normalizer->normalizeHeaderMap('not an array');
@@ -232,9 +203,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals([], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_normalize_string_keyed_array(): void
     {
         $input = [
@@ -247,9 +216,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals($input, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_filter_numeric_keys(): void
     {
         $input = [
@@ -264,9 +231,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals(['valid' => 'kept', 'another' => 'kept'], $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_preserve_all_value_types_in_normalized_array(): void
     {
         $input = [
@@ -282,9 +247,7 @@ final class ResponseNormalizerTest extends TestCase
         $this->assertEquals($input, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_handle_empty_arrays(): void
     {
         $this->assertEquals([], $this->normalizer->normalizeStringKeyedArray([]));

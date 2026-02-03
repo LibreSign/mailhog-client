@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace LibreSign\Mailpit\Tests\unit\Message;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use LibreSign\Mailpit\Message\Headers;
 
 class HeadersTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_parse_headers(): void
     {
         $messageData = $this->getMessageData();
@@ -43,9 +42,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_ignore_case_for_the_header_name(): void
     {
         $messageData = $this->getMessageData();
@@ -57,9 +54,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_return_the_default_value_when_the_header_does_not_exist(): void
     {
         $headers = new Headers([]);
@@ -70,9 +65,7 @@ class HeadersTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_should_check_if_a_header_exists(): void
     {
         $headers = new Headers([]);
