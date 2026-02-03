@@ -63,8 +63,9 @@
         "cs:fix": "vendor-bin/phpcs/vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=PSR2 src/",
         "phpmd": "vendor-bin/phpmd/vendor/phpmd/phpmd/src/bin/phpmd src text phpmd.xml",
         "phpstan": "vendor-bin/phpstan/vendor/phpstan/phpstan/phpstan analyze src/",
-        "test:unit": "vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist --colors=always",
-        "test:coverage": "XDEBUG_MODE=coverage vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit",
+        "test:unit": "vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist --testsuite unit --colors=always",
+        "test:integration": "vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist --testsuite integration --colors=always",
+        "test:coverage": "XDEBUG_MODE=coverage vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist",
         "post-install-cmd": [
           "@composer bin all install --ansi",
           "composer dump-autoload -o"

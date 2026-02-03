@@ -16,7 +16,7 @@ jobs:
   phpunit:
     runs-on: ubuntu-latest
 
-    name: Unit Tests PHP 8.2
+    name: Tests PHP 8.2
 
     services:
       mailpit:
@@ -46,8 +46,14 @@ jobs:
         run: |
           composer install
 
-      - name: Run tests
+      - name: Run unit tests
         env:
           mailpit_smtp_dsn: smtp://mailpit:1025
           mailpit_api_url: http://mailpit:8025
         run: composer run test:unit
+
+      - name: Run integration tests
+        env:
+          mailpit_smtp_dsn: smtp://mailpit:1025
+          mailpit_api_url: http://mailpit:8025
+        run: composer run test:integration
