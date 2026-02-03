@@ -59,6 +59,8 @@
         "lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
         "cs:check": "phpcs --standard=PSR2 src/",
         "cs:fix": "phpcbf --standard=PSR2 src/",
-        "phpmd": "vendor/bin/phpmd src text phpmd.xml"
+        "phpmd": "vendor/bin/phpmd src text phpmd.xml",
+        "test:unit": "vendor/bin/phpunit -c phpunit.xml.dist --colors=always",
+        "test:coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit"
     }
 }
