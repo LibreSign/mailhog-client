@@ -12,8 +12,8 @@
             "version": "2.1.x-dev",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/6d92b333a6bf0a667bcb5eff44e135974a193139",
-                "reference": "6d92b333a6bf0a667bcb5eff44e135974a193139",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e5da4c6fb07c5a91afba8cad1db21cbae5c4657e",
+                "reference": "e5da4c6fb07c5a91afba8cad1db21cbae5c4657e",
                 "shasum": ""
             },
             "require": {
@@ -59,7 +59,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-03T15:29:03+00:00"
+            "time": "2026-02-03T16:46:28+00:00"
         }
     ],
     "aliases": [],
