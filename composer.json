@@ -35,16 +35,11 @@
         "psr/http-factory": "^1.0"
     },
     "require-dev": {
-        "doctrine/coding-standard": "^9.0",
+        "bamarni/composer-bin-plugin": "^1.8",
         "egulias/email-validator": "^2.1.23",
         "nyholm/psr7": "^1.2",
-        "pdepend/pdepend": "^2.5",
         "php-http/curl-client": "^2.0",
-        "phpmd/phpmd": "^2.15",
-        "phpstan/phpstan": "^2.1",
-        "phpunit/phpunit": "10.5.x-dev",
-        "symfony/mailer": "^5.0",
-        "vlucas/phpdotenv": "^5.6"
+        "symfony/mailer": "^5.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -52,16 +47,30 @@
         "sort-packages": true,
         "allow-plugins": {
             "php-http/discovery": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "bamarni/composer-bin-plugin": true
+        }
+    },
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false
         }
     },
     "scripts": {
-        "lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
-        "cs:check": "phpcs --standard=PSR2 src/",
-        "cs:fix": "phpcbf --standard=PSR2 src/",
-        "phpmd": "phpmd src text phpmd.xml",
-        "phpstan": "phpstan analyze src/",
-        "test:unit": "phpunit -c phpunit.xml.dist --colors=always",
-        "test:coverage": "XDEBUG_MODE=coverage phpunit"
+        "lint": "find . -name \\*.php -not -path './vendor/*' -not -path './vendor-bin/*' -print0 | xargs -0 -n1 php -l",
+        "cs:check": "vendor-bin/phpcs/vendor/squizlabs/php_codesniffer/bin/phpcs --standard=PSR2 src/",
+        "cs:fix": "vendor-bin/phpcs/vendor/squizlabs/php_codesniffer/bin/phpcbf --standard=PSR2 src/",
+        "phpmd": "vendor-bin/phpmd/vendor/phpmd/phpmd/src/bin/phpmd src text phpmd.xml",
+        "phpstan": "vendor-bin/phpstan/vendor/phpstan/phpstan/phpstan analyze src/",
+        "test:unit": "vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit -c phpunit.xml.dist --colors=always",
+        "test:coverage": "XDEBUG_MODE=coverage vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit",
+        "post-install-cmd": [
+          "@composer bin all install --ansi",
+          "composer dump-autoload -o"
+        ],
+        "post-update-cmd": [
+          "composer dump-autoload"
+        ]
     }
 }

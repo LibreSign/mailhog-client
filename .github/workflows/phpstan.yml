@@ -36,7 +36,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        run: composer install --no-scripts
+        run: |
+          composer install --no-scripts
+          composer bin phpstan install
 
       - name: Run PHPStan
         run: composer run phpstan

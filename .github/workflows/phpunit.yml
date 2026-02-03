@@ -43,7 +43,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        run: composer i
+        run: |
+          composer i
+          composer bin phpunit install
 
       - name: Run tests
         env:

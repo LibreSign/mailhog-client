@@ -36,7 +36,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
-        run: composer install --no-scripts
+        run: |
+          composer install --no-scripts
+          composer bin phpmd install
 
       - name: Run PHPMD
         run: composer run phpmd
