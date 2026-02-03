@@ -40,7 +40,7 @@
         "nyholm/psr7": "^1.2",
         "pdepend/pdepend": "^2.5",
         "php-http/curl-client": "^2.0",
-        "phpmd/phpmd": "^2.9.1",
+        "phpmd/phpmd": "^2.15",
         "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "10.5.x-dev",
         "symfony/mailer": "^5.0",
